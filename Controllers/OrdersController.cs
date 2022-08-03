@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASUTask.Data;
 using ASUTask.Models;
+using ASUTask.ViewModels;
 
 namespace ASUTask.Controllers
 {
@@ -34,15 +35,26 @@ namespace ASUTask.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
+            var viewModel = new ViewItems();
+            viewModel.Order = await _context.Orders
                 .Include(o => o.Provider)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
+
+            viewModel.OrderItems = _context.OrderItems.Where(i => i.OrderId == id);
+
+/*            var order = await _context.Orders
+                .Include(o => o.Provider)
+                .FirstOrDefaultAsync(m => m.Id == id);*/
+/*            if (order == null)
+            {
+                return NotFound();
+            }*/
+            if (viewModel == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(viewModel);
         }
 
         // GET: Orders/Create

@@ -1,4 +1,5 @@
-﻿@model ASUTask.Models.Order
+﻿@*@model ASUTask.Models.Order*@
+@model ASUTask.ViewModels.ViewItems
 
 @{
     ViewData["Title"] = "Подробнее";
@@ -10,27 +11,71 @@
     <h4>Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Number)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Number)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Date)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Date)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Provider)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Provider)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Provider.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Provider.Id)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |*@
+    <a asp-action="Edit" asp-route-id="@Model.Order.Id">Редактировать</a> |
     <a asp-action="Index">Назад</a>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Заказ
+            </th>
+            <th>
+                Наименование
+            </th>
+            <th>
+                Количество
+            </th>
+            <th>
+                Ед. измерения
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
