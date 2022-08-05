@@ -32,10 +32,26 @@
     </dl>
 </div>
 <div>
-    @*<a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |*@
     <a asp-action="Edit" asp-route-id="@Model.Order.Id">Редактировать</a> |
     <a asp-action="Index">Назад</a>
 </div>
+<form method="get">
+    <div class="form-horizontal">
+        <div class="form-inline">
+            <label class="control-label">Наименование: </label>
+            <select name="name" class="form-control" asp-items="Model.Names"></select>
+        </div>
+        <div class="form-inline">
+            <label class="control-label">Ед. изм.: </label>
+            <select name="unit" class="form-control" asp-items="Model.Units"></select>
+        </div>
+        <div class="form-group-sm">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Фильтр" class="btn btn-default" /> <span> </span>
+            </div>
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -71,11 +87,12 @@
                     @Html.DisplayFor(modelItem => item.Unit)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-controller="OrderItems" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="OrderItems" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="OrderItems" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a asp-controller="OrderItems" asp-action="Create" asp-route-id="@Model.Order.Id">Добавить элемент</a>

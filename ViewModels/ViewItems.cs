@@ -1,4 +1,5 @@
 ﻿using ASUTask.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace ASUTask.ViewModels
     {
         public Order Order { get; set; }
         public IEnumerable<OrderItem> OrderItems { get; set; }
+        public SelectList Names { get; set; }
+        public SelectList Units { get; set; }
     }
 }
