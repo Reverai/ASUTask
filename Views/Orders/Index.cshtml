@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<ASUTask.ViewModels.OrdersFiltr>*@
-@model ASUTask.ViewModels.OrdersFilter
+﻿@model ASUTask.ViewModels.OrdersFilter
 
 @{
     ViewData["Title"] = "Заказы";
@@ -10,14 +9,6 @@
 <p>
     <a asp-action="Create">Создать</a>
 </p>
-@*<form method="get">
-    <div class="form-inline">
-        <label class="control-label">Поставщик: </label>
-        @Html.DropDownList("Order", ViewBag.Provs as SelectList,
-                    htmlAttributes: new { @class = "form-control" })
-        <input type="submit" value="Фильтр" class="btn btn-default" />
-    </div>
-</form>*@
 <form method="get">
     <div class="form-horizontal">
         <div class="form-group form-group-sm">
@@ -73,9 +64,6 @@
                 @Html.DisplayFor(modelItem => item.Provider.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }

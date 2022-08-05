@@ -1,5 +1,4 @@
-﻿@*@model ASUTask.Models.Order*@
-@model ASUTask.ViewModels.ViewItems
+﻿@model ASUTask.ViewModels.ViewItems
 
 @{
     ViewData["Title"] = "Подробнее";
@@ -8,7 +7,7 @@
 <h1>Подробнее</h1>
 
 <div>
-    <h4>Order</h4>
+    <h4>Заказ</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -33,6 +32,7 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Order.Id">Редактировать</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Order.Id">Редактировать</a> |
     <a asp-action="Index">Назад</a>
 </div>
 <form method="get">
